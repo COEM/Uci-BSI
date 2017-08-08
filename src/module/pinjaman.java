@@ -13,30 +13,31 @@ public class pinjaman {
     
     private static String selectedPinjaman;
     
-    public static void tambah(String no,String id_anggota,Integer lama, Integer jumlah, String tanggal) {
+    public static void tambah(String no,String no_anggota,String username,Integer lama, Integer jumlah, String tanggal) {
         try {
             Connection con = koneksi.GetConnection();
             Statement st = con.createStatement();
-            String sql = "insert into pinjaman values (?,?,?,?,?)";
+            String sql = "insert into pinjaman values (?,?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1,no);
-            pst.setString(2,id_anggota);
-            pst.setInt(3, lama);
-            pst.setInt(4, jumlah);
-            pst.setString(5, tanggal);
+            pst.setString(2,no_anggota);
+            pst.setString(3,username);
+            pst.setInt(4, lama);
+            pst.setInt(5, jumlah);
+            pst.setString(6, tanggal);
             pst.execute(); 
         } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
     
-    public static void update (String no,String id_anggota,Integer lama, Integer jumlah, String tanggal){
+    public static void update (String no,String no_anggota,Integer lama, Integer jumlah, String tanggal){
          try {
             Connection con = koneksi.GetConnection();
             Statement st = con.createStatement();
-            String sql = "update pinjaman set id_anggota = ?,lama = ?, jumlah = ?, tanggal=? where no=?";
+            String sql = "update pinjaman set no_anggota = ?,lama = ?, jumlah = ?, tanggal=? where no=?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1,id_anggota);
+            pst.setString(1,no_anggota);
             pst.setInt(2, lama);
             pst.setInt(3,jumlah);
             pst.setString(4,tanggal);
@@ -65,7 +66,7 @@ public class pinjaman {
         try {
             Connection con = koneksi.GetConnection();
             Statement query = con.createStatement();
-            String sql = "select * from pinjaman where no like '"+text+"%' or id_anggota like '"+text+"%'";
+            String sql = "select * from pinjaman where no like '"+text+"%' or no_anggota like '"+text+"%'";
             data = query.executeQuery(sql);
         } catch (Exception e) {
         }
@@ -78,7 +79,7 @@ public class pinjaman {
         try {
             Connection con = koneksi.GetConnection();
             Statement query = con.createStatement();
-            String sql = "select anggota.nama as nama from pinjaman,anggota where pinjaman.id_anggota = anggota.id and pinjaman.no = '"+no_pinjam+"'";
+            String sql = "select anggota.nama as nama from pinjaman,anggota where pinjaman.no_anggota = anggota.no and pinjaman.no = '"+no_pinjam+"'";
             data = query.executeQuery(sql);
             while (data.next()) {                  
                 nama = data.getString("nama");
