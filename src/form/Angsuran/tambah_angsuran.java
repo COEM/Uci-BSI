@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import module.anggota;
 import module.angsuran;
+import module.login;
 import module.pinjaman;
 //import module.simpanan;
 import module.umum;
@@ -253,33 +254,23 @@ public class tambah_angsuran extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        try {
-            angsuran.tambah(no_pinjam.getText(), Integer.parseInt(angsuran_ke.getText()), (int) Integer.parseInt(jumlah.getText()), (int) Integer.parseInt(jasa.getText()), new SimpleDateFormat("yyyy/MM/dd").format(tanggal.getDate()));
-        } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage().toString());
-        } finally {
-            JOptionPane.showMessageDialog(rootPane, "Angsuran berhasil ditambahkan");
-//            no_pinjam.setText("");
-            angsuran_ke.setText(String.valueOf(angsuran.ke(no_pinjam.getText())));
-//            jumlah.setText("");
-            tanggal.setDate(null);
-            showTable(angsuran.detail(no_pinjam.getText()));
-        }
+
+            try {
+                angsuran.tambah(angsuran.buatKode(), no_pinjam.getText(),login.getUserName(), Integer.parseInt(angsuran_ke.getText()),Integer.parseInt(jumlah.getText()), Integer.parseInt(jasa.getText()), new SimpleDateFormat("yyyy/MM/dd").format(tanggal.getDate()));
+                JOptionPane.showMessageDialog(rootPane, "Angsuran berhasil ditambahkan");
+                angsuran_ke.setText(String.valueOf(angsuran.ke(no_pinjam.getText())));
+                tanggal.setDate(null);
+                showTable(angsuran.detail(no_pinjam.getText()));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih tanggal");
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         cari_pinjaman form = new cari_pinjaman();
-//        jDesktopPane1.add(form);
-        
-        //Mengatur posisi jInternal Form ke tengah
-//        Dimension x = jDesktopPane1.getSize();
-//        Dimension y = form.getSize();
-        
-//        tag.setLocation((x.width-y.width)/2, (x.height-y.height)/2);
         JDesktopPane desktopPane = getDesktopPane(); 
-        desktopPane.add(form);//add f1 to desktop pane f1.setVisible(true);// set the f1 frame visible
+        desktopPane.add(form);
         form.setVisible(true);
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -288,11 +279,7 @@ public class tambah_angsuran extends javax.swing.JInternalFrame {
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         // TODO add your handling code here:
         no_pinjam.setText(pinjaman.getNo());
-        try {
-            
-        } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage().toString());
-        }
+
         
     }//GEN-LAST:event_formInternalFrameActivated
 

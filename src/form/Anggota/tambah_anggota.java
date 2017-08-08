@@ -13,10 +13,6 @@ import module.anggota;
  * @author user
  */
 public class tambah_anggota extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form tambah_anggota
-     */
     public tambah_anggota() {
         initComponents();
     }
@@ -205,12 +201,13 @@ public class tambah_anggota extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             anggota.tambah(id.getText(), nama.getText(), nrp.getText(), pangkat.getText());
-        } finally {
             JOptionPane.showMessageDialog(rootPane, "Data anggota berhasil disimpan");
             id.setText(anggota.buat_kode());
             nama.setText("");
             nrp.setText("");
             pangkat.setText("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getLocalizedMessage().toString());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
