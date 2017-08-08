@@ -15,17 +15,18 @@ import static module.umum.buat_kode;
  */
 public class simpanan {
     
-    public static void tambah(String no,String id_anggota,Integer sukarela, Integer wajib, String tanggal) {
+    public static void tambah(String no,String no_anggota,String username,Integer sukarela, Integer wajib, String tanggal) {
         try {
             Connection con = koneksi.GetConnection();
             Statement st = con.createStatement();
             String sql = "insert into simpanan values (?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1,no);
-            pst.setString(2,id_anggota);
-            pst.setInt(3, sukarela);
-            pst.setInt(4, wajib);
-            pst.setString(5, tanggal);
+            pst.setString(2,no_anggota);
+            pst.setString(3, username);
+            pst.setInt(4, sukarela);
+            pst.setInt(5, wajib);
+            pst.setString(6, tanggal);
             pst.execute(); 
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage().toString());
@@ -66,7 +67,7 @@ public class simpanan {
         try {
             Connection con = koneksi.GetConnection();
             Statement query = con.createStatement();
-            String sql = "select * from simpanan where id_anggota like '%"+text+"%' or no like '%"+text+"%'";
+            String sql = "select * from simpanan where no_anggota like '%"+text+"%' or no like '%"+text+"%'";
             data = query.executeQuery(sql);
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage().toString());

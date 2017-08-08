@@ -138,7 +138,7 @@ public class cari_anggota extends javax.swing.JInternalFrame {
         try {
             while (data.next()) {            
               tabel_anggota.addRow(new Object[]{
-                  data.getString("id"),
+                  data.getString("no"),
                   data.getString("nama"),
                   data.getString("nrp"),
                   data.getString("pangkat"),

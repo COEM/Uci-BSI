@@ -25,7 +25,7 @@ public class lihat_data_anggota extends javax.swing.JInternalFrame {
     
     public void showTable(ResultSet data){
         DefaultTableModel tabel_anggota = new DefaultTableModel();
-        tabel_anggota.addColumn("KODE ANGGOTA");
+        tabel_anggota.addColumn("NO ANGGOTA");
         tabel_anggota.addColumn("NAMA");
         tabel_anggota.addColumn("NRP");
         tabel_anggota.addColumn("PANGKAT");
