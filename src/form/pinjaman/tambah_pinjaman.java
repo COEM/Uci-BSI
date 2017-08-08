@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import module.anggota;
+import module.login;
 import module.pinjaman;
 import module.umum;
 
@@ -242,7 +243,7 @@ public class tambah_pinjaman extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            pinjaman.tambah(no.getText(),id_anggota.getText(),Integer.parseInt(lama.getText()),Integer.parseInt(jumlah.getText()),new SimpleDateFormat("yyyy/MM/dd").format(tanggal.getDate()));
+            pinjaman.tambah(no.getText(),id_anggota.getText(),login.getUserName(),Integer.parseInt(lama.getText()),Integer.parseInt(jumlah.getText()),new SimpleDateFormat("yyyy/MM/dd").format(tanggal.getDate()));
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage().toString());
         } finally{
@@ -253,7 +254,6 @@ public class tambah_pinjaman extends javax.swing.JInternalFrame {
             jumlah.setText("");
             tanggal.setDate(null);
         }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
