@@ -19,7 +19,7 @@ public class simpanan {
         try {
             Connection con = koneksi.GetConnection();
             Statement st = con.createStatement();
-            String sql = "insert into simpanan values (?,?,?,?,?)";
+            String sql = "insert into simpanan values (?,?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1,no);
             pst.setString(2,no_anggota);
@@ -33,13 +33,13 @@ public class simpanan {
         }
     }
     
-    public static void update(String no, String id_anggota,Integer sukarela, Integer wajib, String tanggal){
+    public static void update(String no, String no_anggota,Integer sukarela, Integer wajib, String tanggal){
          try {
             Connection con = koneksi.GetConnection();
             Statement st = con.createStatement();
-            String sql = "update simpanan set id_anggota = ?,sukarela = ?, wajib = ?, tanggal=? where no = ?";
+            String sql = "update simpanan set no_anggota = ?,sukarela = ?, wajib = ?, tanggal=? where no = ?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1,id_anggota);
+            pst.setString(1,no_anggota);
             pst.setInt(2, sukarela);
             pst.setInt(3,wajib);
             pst.setString(4,tanggal);

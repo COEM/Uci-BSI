@@ -15,18 +15,19 @@ import java.sql.Statement;
  * @author user
  */
 public class angsuran {
-    public static void tambah(String no_pinjam,Integer ke, Integer jumlah, Integer jasa, String tanggal) {
+    public static void tambah(String no,String no_pinjam,String username,Integer ke, Integer jumlah, Integer jasa, String tanggal) {
         try {
             Connection con = koneksi.GetConnection();
             Statement st = con.createStatement();
-            String sql = "insert into angsuran values (?,?,?,?,?,?)";
+            String sql = "insert into angsuran values (?,?,?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1,null);
+            pst.setString(1,no);
             pst.setString(2,no_pinjam);
-            pst.setInt(3, ke);
-            pst.setInt(4, jumlah);
-            pst.setInt(5, jasa);
-            pst.setString(6, tanggal);
+            pst.setString(3,username);
+            pst.setInt(4, ke);
+            pst.setInt(5, jumlah);
+            pst.setInt(6, jasa);
+            pst.setString(7, tanggal);
             pst.execute(); 
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -109,7 +110,7 @@ public class angsuran {
         return x;
     }
     
-    public static Double perBulan(String no_pinjam){
+    public static Integer perBulan(String no_pinjam){
         Double lama,jumlah;
         Double perBulan = null;
         try {
@@ -126,7 +127,7 @@ public class angsuran {
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage().toString());
         }
-        return perBulan;
+        return perBulan.intValue();
     }
     
     public static ResultSet detail(String no_pinjam){
@@ -147,7 +148,7 @@ public class angsuran {
         try {
             Connection con = koneksi.GetConnection();
             Statement query = con.createStatement();
-            String sql = "select pinjaman.no as no, pinjaman.id_anggota as id, angsuran.angsuran_ke as ke, angsuran.jumlah_angsuran as jumlah, angsuran.jasa as jasa,angsuran.tanggal as tanggal from angsuran,anggota,pinjaman where angsuran.no_pinjam = pinjaman.no and pinjaman.id_anggota = anggota.id";
+            String sql = "select pinjaman.no as no, pinjaman.no_anggota as no, angsuran.angsuran_ke as ke, angsuran.jumlah_angsuran as jumlah, angsuran.jasa as jasa,angsuran.tanggal as tanggal from angsuran,anggota,pinjaman where angsuran.no_pinjam = pinjaman.no and pinjaman.no_anggota = anggota.no";
             data = query.executeQuery(sql);
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage().toString());
@@ -160,7 +161,7 @@ public class angsuran {
         try {
             Connection con = koneksi.GetConnection();
             Statement query = con.createStatement();
-            String sql = "select pinjaman.no as no, pinjaman.id_anggota as id, angsuran.angsuran_ke as ke, angsuran.jumlah_angsuran as jumlah, angsuran.jasa as jasa,angsuran.tanggal as tanggal from angsuran,anggota,pinjaman where angsuran.no_pinjam = pinjaman.no and pinjaman.id_anggota = anggota.id and (pinjaman.id_anggota like '"+text+"%' or pinjaman.no like '"+text+"%')";
+            String sql = "select pinjaman.no as no, pinjaman.no_anggota as no, angsuran.angsuran_ke as ke, angsuran.jumlah_angsuran as jumlah, angsuran.jasa as jasa,angsuran.tanggal as tanggal from angsuran,anggota,pinjaman where angsuran.no_pinjam = pinjaman.no and pinjaman.no_anggota = anggota.no and (pinjaman.no_anggota like '"+text+"%' or pinjaman.no like '"+text+"%')";
             data = query.executeQuery(sql);
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage().toString());
@@ -168,7 +169,12 @@ public class angsuran {
         return data;
     }
     
-    public static Double jasa(String no_pinjam){
+    
+    public static String buatKode(){
+        return umum.buat_kode("AGS", "no", "angsuran");
+    }
+    
+    public static Integer jasa(String no_pinjam){
         Double x = 0.0;
         try {
             Connection con = koneksi.GetConnection();
@@ -182,10 +188,11 @@ public class angsuran {
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage().toString());
         }
-        return x;
+        return x.intValue();
     }
     
     public static void main(String[] args) {
-        System.out.println(jasa("PJ00001"));
+        Double x= 12.00;
+        System.out.println(buatKode());
     }
 }

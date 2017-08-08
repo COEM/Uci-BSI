@@ -314,6 +314,8 @@ public class tambah_simpanan extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             simpanan.tambah(no_simpan.getText(), id_anggota.getText(),login.getUserName(), Integer.parseInt(sukarela.getText()),Integer.parseInt(wajib.getText()),new SimpleDateFormat("yyyy/MM/dd").format(tanggal.getDate()));
+        } catch (Exception e){
+            System.out.println(e.getLocalizedMessage().toString());
         } finally {
             JOptionPane.showMessageDialog(rootPane, "Simpanan berhasil ditambahkan");
             no_simpan.setText(simpanan.buat_kode());
