@@ -5,8 +5,10 @@ import java.text.SimpleDateFormat;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import module.anggota;
+import module.login;
 import module.simpanan;
 import module.umum;
+import module.user;
 
 /**
  *
@@ -311,7 +313,7 @@ public class tambah_simpanan extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            simpanan.tambah(no_simpan.getText(), id_anggota.getText(), Integer.parseInt(sukarela.getText()),Integer.parseInt(wajib.getText()),new SimpleDateFormat("yyyy/MM/dd").format(tanggal.getDate()));
+            simpanan.tambah(no_simpan.getText(), id_anggota.getText(),login.getUserName(), Integer.parseInt(sukarela.getText()),Integer.parseInt(wajib.getText()),new SimpleDateFormat("yyyy/MM/dd").format(tanggal.getDate()));
         } finally {
             JOptionPane.showMessageDialog(rootPane, "Simpanan berhasil ditambahkan");
             no_simpan.setText(simpanan.buat_kode());
