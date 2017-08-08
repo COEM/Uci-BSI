@@ -19,7 +19,7 @@ public class lihat_data_pinjaman extends javax.swing.JInternalFrame {
     public void showTable(ResultSet data){
         DefaultTableModel tabel_pinjaman = new DefaultTableModel();
         tabel_pinjaman.addColumn("NO.");
-        tabel_pinjaman.addColumn("ID ANGGOTA");
+        tabel_pinjaman.addColumn("NO ANGGOTA");
         tabel_pinjaman.addColumn("LAMA PINJAMAN");
         tabel_pinjaman.addColumn("JUMLAH");
         tabel_pinjaman.addColumn("TANGGAL");
@@ -28,7 +28,7 @@ public class lihat_data_pinjaman extends javax.swing.JInternalFrame {
             while (data.next()) {            
               tabel_pinjaman.addRow(new Object[]{
                   data.getString("no"),
-                  data.getString("id_anggota"),
+                  data.getString("no_anggota"),
                   data.getInt("lama_pinjaman"),
                   data.getInt("jumlah"),
                   data.getDate("tanggal").toString()
