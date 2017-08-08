@@ -27,7 +27,7 @@ public class lihat_data_simpanan extends javax.swing.JInternalFrame {
     public void showTable(ResultSet data){
         DefaultTableModel tabel_simpanan = new DefaultTableModel();
         tabel_simpanan.addColumn("NO.");
-        tabel_simpanan.addColumn("ID ANGGOTA");
+        tabel_simpanan.addColumn("NO ANGGOTA");
         tabel_simpanan.addColumn("SUKARERLA");
         tabel_simpanan.addColumn("WAJIB");
         tabel_simpanan.addColumn("TANGGAL");
@@ -36,7 +36,7 @@ public class lihat_data_simpanan extends javax.swing.JInternalFrame {
             while (data.next()) {            
               tabel_simpanan.addRow(new Object[]{
                   data.getString("no"),
-                  data.getString("id_anggota"),
+                  data.getString("no_anggota"),
                   data.getInt("sukarela"),
                   data.getInt("wajib"),
                   data.getDate("tanggal").toString()

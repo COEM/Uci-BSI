@@ -19,7 +19,7 @@ public class simpanan {
         try {
             Connection con = koneksi.GetConnection();
             Statement st = con.createStatement();
-            String sql = "insert into simpanan values (?,?,?,?,?)";
+            String sql = "insert into simpanan values (?,?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1,no);
             pst.setString(2,no_anggota);
