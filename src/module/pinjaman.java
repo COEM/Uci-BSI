@@ -1,0 +1,115 @@
+package module;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+/**
+ *
+ * @author user
+ */
+public class pinjaman {
+    
+    private static String selectedPinjaman;
+    
+    public static void tambah(String no,String id_anggota,Integer lama, Integer jumlah, String tanggal) {
+        try {
+            Connection con = koneksi.GetConnection();
+            Statement st = con.createStatement();
+            String sql = "insert into pinjaman values (?,?,?,?,?)";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1,no);
+            pst.setString(2,id_anggota);
+            pst.setInt(3, lama);
+            pst.setInt(4, jumlah);
+            pst.setString(5, tanggal);
+            pst.execute(); 
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+    
+    public static void update (String no,String id_anggota,Integer lama, Integer jumlah, String tanggal){
+         try {
+            Connection con = koneksi.GetConnection();
+            Statement st = con.createStatement();
+            String sql = "update pinjaman set id_anggota = ?,lama = ?, jumlah = ?, tanggal=? where no=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1,id_anggota);
+            pst.setInt(2, lama);
+            pst.setInt(3,jumlah);
+            pst.setString(4,tanggal);
+            pst.setString(5,no);
+            pst.execute(); 
+        } catch (Exception e) {
+            System.out.println(e.toString());  
+        }
+    }
+    
+    public static void hapus (String no){
+         try {
+            Connection con = koneksi.GetConnection();
+            Statement st = con.createStatement();
+            String sql = "delete from pinjaman where no=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1,no);
+            pst.execute(); 
+        } catch (Exception e) {
+            System.out.println(e.toString());  
+        }
+    }
+    
+    public static ResultSet cari (String text){
+        ResultSet data = null;
+        try {
+            Connection con = koneksi.GetConnection();
+            Statement query = con.createStatement();
+            String sql = "select * from pinjaman where no like '"+text+"%' or id_anggota like '"+text+"%'";
+            data = query.executeQuery(sql);
+        } catch (Exception e) {
+        }
+        return data;
+    }
+    
+    public static String namaPeminjam (String no_pinjam){
+        String nama = null;
+        ResultSet data = null;
+        try {
+            Connection con = koneksi.GetConnection();
+            Statement query = con.createStatement();
+            String sql = "select anggota.nama as nama from pinjaman,anggota where pinjaman.id_anggota = anggota.id and pinjaman.no = '"+no_pinjam+"'";
+            data = query.executeQuery(sql);
+            while (data.next()) {                  
+                nama = data.getString("nama");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage().toString());
+        }
+        return nama;
+    }
+    
+    public static ResultSet data (){
+        ResultSet data = null;
+        try {
+            Connection con = koneksi.GetConnection();
+            Statement query = con.createStatement();
+            String sql = "select * from pinjaman";
+            data = query.executeQuery(sql);
+        } catch (Exception e) {
+        }
+        return data;
+    }
+    
+    public static String buat_kode(){
+        return umum.buat_kode("PJ", "no", "pinjaman");
+    }
+    
+    public static void setNo(String no){
+        selectedPinjaman = no;
+    }
+    
+    public static String getNo(){
+        return selectedPinjaman;
+    }
+}
