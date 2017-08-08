@@ -17,46 +17,46 @@ import java.sql.Statement;
  */
 public class anggota {
     private static String selectedAnggota;
-    public static void tambah(String id,String nama, String nrp, String pangkat) {
+    public static void tambah(String no,String nama, String nrp, String pangkat) {
         try {
             Connection con = koneksi.GetConnection();
             Statement st = con.createStatement();
-            String sql = "insert into anggota values (?,?,?,?,?)";
+            String sql = "insert into anggota values (?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1,null);
-            pst.setString(2,id);
-            pst.setString(3, nama);
-            pst.setString(4, nrp);
-            pst.setString(5, pangkat);
+//            pst.setString(1,null);
+            pst.setString(1,no);
+            pst.setString(2, nama);
+            pst.setString(3, nrp);
+            pst.setString(4, pangkat);
             pst.execute(); 
         } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
     
-    public static void update(String id,String nama, String nrp, String pangkat){
+    public static void update(String no,String nama, String nrp, String pangkat){
         try {
             Connection con = koneksi.GetConnection();
             Statement st = con.createStatement();
-            String sql = "update anggota set nama = ?,nrp = ?, pangkat = ? where id = ?";
+            String sql = "update anggota set nama = ?,nrp = ?, pangkat = ? where no = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1,nama);
             pst.setString(2, nrp);
             pst.setString(3, pangkat);
-            pst.setString(4, id);
+            pst.setString(4, no);
             pst.execute(); 
         } catch (Exception e) {
             System.out.println(e.toString());  
         }
     }
     
-    public static void hapus(String id){
+    public static void hapus(String no){
         try {
             Connection con = koneksi.GetConnection();
             Statement st = con.createStatement();
-            String sql = "delete from anggota where id = ?";
+            String sql = "delete from anggota where no = ?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1,id);
+            pst.setString(1,no);
             pst.execute(); 
         } catch (Exception e) {
             System.out.println(e.toString());  
@@ -75,12 +75,12 @@ public class anggota {
         return data;
     }
     
-    public static ResultSet getAnggota(String id){
+    public static ResultSet getAnggota(String no){
         ResultSet data = null;
         try {
             Connection con = koneksi.GetConnection();
             Statement query = con.createStatement();
-            String sql = "select * from anggota where id = '"+id+"'";
+            String sql = "select * from anggota where no = '"+no+"'";
             data = query.executeQuery(sql);
         } catch (Exception e) {
         }
@@ -92,7 +92,7 @@ public class anggota {
         try {
             Connection con = koneksi.GetConnection();
             Statement query = con.createStatement();
-            String sql = "select * from anggota where id like '%"+id+"%' or nama like '%"+id+"%'";
+            String sql = "select * from anggota where no like '%"+id+"%' or nama like '%"+id+"%'";
             data = query.executeQuery(sql);
         } catch (Exception e) {
         }
@@ -103,8 +103,8 @@ public class anggota {
         return umum.buat_kode("AG", "no", "anggota");
     }
     
-    public static void setId(String id){
-        selectedAnggota = id;
+    public static void setId(String no){
+        selectedAnggota = no;
     }
     
     public static String getId(){

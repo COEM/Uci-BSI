@@ -33,7 +33,7 @@ public class lihat_data_anggota extends javax.swing.JInternalFrame {
         try {
             while (data.next()) {            
               tabel_anggota.addRow(new Object[]{
-                  data.getString("id"),
+                  data.getString("no"),
                   data.getString("nama"),
                   data.getString("nrp"),
                   data.getString("pangkat"),
@@ -111,6 +111,9 @@ public class lihat_data_anggota extends javax.swing.JInternalFrame {
         tabelAnggota.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lihatDataAnggota(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tabelAnggotaMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(tabelAnggota);
@@ -282,6 +285,10 @@ public class lihat_data_anggota extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         showTable(anggota.data());
     }//GEN-LAST:event_formInternalFrameActivated
+
+    private void tabelAnggotaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelAnggotaMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabelAnggotaMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
