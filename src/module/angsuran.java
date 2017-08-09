@@ -191,8 +191,36 @@ public class angsuran {
         return x.intValue();
     }
     
-    public static void main(String[] args) {
-        Double x= 12.00;
-        System.out.println(buatKode());
+    public static Integer totalAngsuran(String no_pinjam){
+        String total = null;
+        try {
+            Connection con = koneksi.GetConnection();
+            Statement query = con.createStatement();
+            String sql = "select sum(jumlah_angsuran) as total from angsuran where no_pinjam = '"+no_pinjam+"'";
+            ResultSet data  = query.executeQuery(sql);
+            if (data.first()) {
+                total = data.getString("total");
+            } else{
+            }
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage().toString());
+        }
+        return Integer.valueOf(total);
     }
+    
+    public static Boolean cekLunas(String no_pinjam){
+        Boolean status = false;
+        if(pinjaman.totalKembali(no_pinjam) > totalAngsuran(no_pinjam)){
+            status = false;
+        } else if(pinjaman.totalKembali(no_pinjam) <= totalAngsuran(no_pinjam)){
+            status = true;
+        }
+        return status;
+    }
+    
+    public static void main(String[] args) {
+//        Double x= 12.00;
+//        System.out.println(cekLunas("PJ00001"));
+    }
+   
 }
