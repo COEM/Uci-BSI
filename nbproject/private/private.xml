@@ -12,11 +12,17 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/H:/TA/koperasi_kodim/src/form/laporan/laporan_pinjaman.java</file>
-            <file>file:/H:/TA/koperasi_kodim/src/form/laporan/laporan_simpanan.java</file>
-            <file>file:/H:/TA/koperasi_kodim/src/form/laporan/laporan_angsuran.java</file>
+            <file>file:/H:/TA/koperasi_kodim/src/form/pinjaman/lihat_data_pinjaman.java</file>
+            <file>file:/H:/TA/koperasi_kodim/src/form/Angsuran/tambah_angsuran.java</file>
+            <file>file:/H:/TA/koperasi_kodim/src/form/pinjaman/cari_pinjaman.java</file>
             <file>file:/H:/TA/koperasi_kodim/src/form/menu.java</file>
-            <file>file:/H:/TA/koperasi_kodim/src/report/lap_angsuran.jrxml</file>
+            <file>file:/H:/TA/koperasi_kodim/src/module/pinjaman.java</file>
+            <file>file:/H:/TA/koperasi_kodim/src/form/Anggota/cari_anggota.java</file>
+            <file>file:/H:/TA/koperasi_kodim/src/form/pinjaman/tambah_pinjaman.java</file>
+            <file>file:/H:/TA/koperasi_kodim/src/module/angsuran.java</file>
+            <file>file:/H:/TA/koperasi_kodim/src/form/login.java</file>
+            <file>file:/H:/TA/koperasi_kodim/src/form/Anggota/tambah_anggota.java</file>
+            <file>file:/H:/TA/koperasi_kodim/src/form/Anggota/lihat_data_anggota.java</file>
         </group>
     </open-files>
 </project-private>

@@ -188,7 +188,7 @@ public class login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "username atau password yang anda masukan salah");
             }
         } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage().toString());
+            JOptionPane.showMessageDialog(rootPane, e.getLocalizedMessage().toString());
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -3,10 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[select * from anggota]]>
 	</queryString>
-	<field name="id" class="java.lang.String">
+	<field name="no" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="nama" class="java.lang.String">
@@ -55,7 +55,7 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ID Anggota]]></text>
+				<text><![CDATA[No Anggota]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#05674D" backcolor="#E6E6E6" uuid="c95a4a9f-16bd-4652-a546-dc192f7d322b"/>
@@ -78,6 +78,10 @@
 				</textElement>
 				<text><![CDATA[Pangkat]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="48" y="1" width="100" height="20" uuid="d11d8f53-824a-405f-82dc-05bb45560c63"/>
+				<text><![CDATA[no]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -85,12 +89,12 @@
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="1069615d-6dec-408a-beac-70ea2a8db0d8"/>
 			</line>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="138" height="20" uuid="551f4a42-3ee6-41d1-9e0d-2c192641cbce"/>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="9a1f097c-8849-4143-8dd2-623748f6e0c8"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{no}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="276" y="0" width="138" height="20" uuid="267d80c7-689f-4b84-93cf-82091051841c"/>
